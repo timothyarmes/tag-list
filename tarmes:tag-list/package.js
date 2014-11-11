@@ -1,8 +1,8 @@
 Package.describe({
   name: 'tarmes:tag-list',
-  summary: "Displays a list to which the user can add or remove items dynamically, with support for hot code push and Twitter's typeahead library",
+  summary: "Display a list to which the user can add or remove items, supporting hot code push and Typeahead",
   version: '1.0.0',
-  git: ' /* Fill me in! */ '
+  git: 'https://github.com/timothyarmes/tag-list'
 });
 
 Package.onUse(function(api) {
