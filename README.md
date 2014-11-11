@@ -8,6 +8,10 @@ In constrast to alternative JQuery implementations, this packages uses Meteor's 
 
 Compatibility with Twitter's Typeahead is provided via the sergeyt/meteor-typeahead package.
 
+## Installation
+
+    meteor add tarmes:tag-list
+
 ## Demo and Guide
 
 A demonstration and guide can be found on the project's [Meteor Page](http://tag-list.meteor.com/)

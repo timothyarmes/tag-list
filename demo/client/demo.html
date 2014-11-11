@@ -16,6 +16,9 @@
             <p>In constrast to alternative JQuery implementations, this packages uses Meteor's reactivity to keep the list updated, and the current list is stored inside a session variable so that it will <strong>survive hot code pushes</strong> while the user is filling out the form.</p>
             <p>Compatibility with <a href="https://twitter.github.io/typeahead.js/"  target="_blank">Twitter's Typeahead</a> is provided via the <a href="https://github.com/sergeyt/meteor-typeahead" target="_blank">sergeyt/meteor-typeahead</a> package.</p>
             
+            <h3>Installation</h3>
+            <pre>meteor add tarmes:tag-list</pre>
+            
             <h3>Adding a list to a template</h3>
             <p>To include a tag-list, do this:</p>
             <pre>&lbrace;{> tagList id="<em>id</em>" defaultItems=<em>intialListItems</em>}}</pre>
