@@ -1,0 +1,176 @@
+<head>
+  <title>tarmes:tag-list</title>
+</head>
+
+<body>
+   <div class="container theme-showcase" role="main">
+      <div class="jumbotron text-center">
+         <h1>tarmes:tag-list</h1>
+         <p>Dynamic List handling for Meteor by <a href="http://timothyarmes.com" target="_blank">Timothy Armes</a></p>
+      </div>
+
+      <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Purpose</h2>
+            <p>This Meteor package can be used to create a Bootstrap 3 compatible dynamic list or "tag cloud" inside a form, allowing user to add and remove list items easily.</p>
+            <p>In constrast to alternative JQuery implementations, this packages uses Meteor's reactivity to keep the list updated, and the current list is stored inside a session variable so that it will <strong>survive hot code pushes</strong> while the user is filling out the form.</p>
+            <p>Compatibility with <a href="https://twitter.github.io/typeahead.js/"  target="_blank">Twitter's Typeahead</a> is provided via the <a href="https://github.com/sergeyt/meteor-typeahead" target="_blank">sergeyt/meteor-typeahead</a> package.</p>
+            
+            <h3>Adding a list to a template</h3>
+            <p>To include a tag-list, do this:</p>
+            <pre>&lbrace;{> tagList id="<em>id</em>" defaultItems=<em>intialListItems</em>}}</pre>
+            <p>where <code>id</code> is a unique identifier for this list on the page, and <code>intialListItems</code> is an array containing the items to include when the list is first rendered (from, for example, a template helper).</p>
+            
+            <h3>Retrieving the result</h3>
+            <p>When processing the form you'll need to retrieve the list of items that the user has entered. This is done using:</p>
+            <pre>TagList.get(<em>id</em>)</pre>
+            <p>where <code>id</code> is the unique identifier used in the template file.</p>
+            
+            <h3>Demos - Styling the list</h3>
+            <p>The generated list is structured using &lt;ul> and &lt;li> elements, so it's easy to create different effects by controlling the CSS.<br>Here are some examples:</p>
+         </div>
+      </div>
+      
+     {{> examples}}
+   
+      <div class="row">
+         
+         <!-- Typeahead -->
+      
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         
+            <h3>Integrating Twitter's Typeahead</h3>
+            
+            <p>Using the <a href="https://github.com/sergeyt/meteor-typeahead" target="_blank">Typeahead</a> package you can add typeahead support to the <code>&lt;input></code> field inside
+            your template's <code>rendered</code> callback. eg:</p>
+            
+            <pre>
+Template.typeahead.rendered = function() {
+
+   Meteor.typeahead(this.find('input'),
+      ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+       'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+       'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+       'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+       'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+       'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+       'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+       'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+       'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ]
+   )};</pre>
+            
+            <p>Unfortunately adding Twitter's Typeahead to your project isn't quite as simple as it should be because although it's been design to work with Bootstrap 3, it doesn't work correctly out of the box when using Bootstrap's &lt;input-group> (used to add the button to the input fields).</p>
+            <p>To solve this issue you should also include either the <em>Less</em> or <em>CSS</em> files from this project (depending on how you've added Bootstrap-3 to your project):</p>
+            <pre><a href="https://github.com/hyspace/typeahead.js-bootstrap3.less" target="_blank">https://github.com/hyspace/typeahead.js-bootstrap3.less</a></pre>
+
+            <p>Once you done that you'll have a nicely styled result:</p>
+            
+         </div>
+      </div>
+
+      {{> typeahead}}
+
+   </div>
+</body>
+
+<template name="examples">
+   <div class="page-header">
+      <div class="row">
+
+         <!-- Vertical List -->
+   
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 vertical-list">
+            <h3 class="text-center">Vertical list</h3>
+            <hr>
+            
+            <div class="example-list">
+               {{> tagList id="items" defaultItems=intialListItems}} 
+            </div>
+         </div>
+         
+         <!-- Tag Cloud -->
+
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 tag-cloud">
+            <h3 class="text-center">Tag Cloud</h3>
+            <hr>
+            
+            <div class="example-list">
+               {{> tagList id="tags" defaultItems=intialTags}}
+            </div>
+         </div>
+         
+                  
+      </div>
+      
+      <div class="row">
+         
+         <!-- Vertical List info -->
+      
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <p>Result from TagList.get(<em>id</em>):</p>
+            <pre>{{listAsString "items"}}</pre>
+            
+            <p>CSS:</p>
+            
+            <pre>
+.tag-list ul {
+   padding: 0;
+   list-style-type: none;
+   margin:0;
+}  
+
+.tag-list ul li {
+   margin-bottom: 5px;
+}           </pre>
+         </div>
+         
+         <!-- Tag Cloud Info -->
+         
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <p>Result from TagList.get(<em>id</em>):</p>
+            <pre>{{listAsString "tags"}}</pre>
+            
+            <p>CSS:</p>
+            
+            <pre>
+.tag-list .input-group {
+   width: 100px;
+}
+
+.tag-list ul {
+   padding: 0;
+   list-style-type: none;
+}
+
+.tag-list ul li {
+   float: left;
+   margin-bottom: 5px;
+   margin-right: 5px;
+}           </pre>
+         </div>
+
+      </div>
+      
+   </div>
+</template>
+
+<template name="typeahead">
+   <div class="page-header">
+      <div class="row row-centered">
+
+         <!-- Typeahead example -->
+   
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-centered vertical-list">
+            <h3 class="text-center">Typeahead example</h3>
+            <hr>
+            
+            <div class="example-list">
+               {{> tagList id="typeahead"}} 
+            </div>
+         </div>
+                  
+      </div>
+   </div>
+</template>
+

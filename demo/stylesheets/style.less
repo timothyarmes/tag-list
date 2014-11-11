@@ -1,0 +1,64 @@
+@import "bootstrap/custom.bootstrap.mixins.import.less";
+@import "bootstrap/custom.bootstrap.import.less";
+
+// Styles that allow typeahead to work properly with bootstrap-3's button groups
+
+@import "typeahead.import.less";
+
+.container {
+   padding-bottom: 80px;
+}
+   
+.example-list {
+   margin-bottom: 40px;   
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+// List styles
+
+.vertical-list .tag-list ul {
+   padding: 0;
+   list-style-type: none;
+   margin:0;
+}  
+
+.vertical-list .tag-list ul li {
+   margin-bottom: 5px;
+}
+
+.tag-cloud .tag-list .input-group {
+   width: 100px;
+}
+
+.tag-cloud .tag-list ul {
+   padding: 0;
+   list-style-type: none;
+}
+
+.tag-cloud .tag-list ul li {
+   float: left;
+   margin-bottom: 5px;
+   margin-right: 5px;
+}
+
+.row {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

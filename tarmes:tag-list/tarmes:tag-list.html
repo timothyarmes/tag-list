@@ -1,0 +1,19 @@
+<template name="tagList">
+   <div class="tag-list">
+      <ul>
+         {{#each tagListItems}}
+            {{> tagListItem}}
+         {{/each}}
+      </ul>
+      <div class="input-group input-group-sm">
+         <input class="form-control" type="text" />
+         <span class="input-group-btn">
+            <button class="btn btn-primary add-tag-list-button" type="button">+</button>
+         </span>
+      </div>
+   </div>
+</template>
+
+<template name="tagListItem">
+   <li><button class="btn btn-info btn-sm tag-list-item" name="{{this}}">{{this}} <span class="glyphicon glyphicon-remove"></span></button></li>
+</template>
