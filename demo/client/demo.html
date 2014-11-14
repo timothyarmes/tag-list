@@ -30,7 +30,8 @@
             <p>where <code>id</code> is the unique identifier used in the template file.</p>
             
             <h3>Demos - Styling the list</h3>
-            <p>The generated list is structured using &lt;ul> and &lt;li> elements, so it's easy to create different effects by controlling the CSS.<br>Here are some examples:</p>
+            <p>The generated list is structured using &lt;ul> and &lt;li> elements, and the containing &lt;div> will have the <code>id</code> that you assigned, so it's easy to create different effects by controlling the CSS.</p>
+            <p>Here are some examples:</p>
          </div>
       </div>
       
@@ -50,7 +51,7 @@
             <pre>
 Template.typeahead.rendered = function() {
 
-   Meteor.typeahead(this.find('input'),
+   Meteor.typeahead(this.find('#my-id input'),
       ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
